@@ -1,7 +1,15 @@
 feature 'Attacking' do
   scenario 'attack Player 2' do
     sing_in_and_play
-    click_link 'Attack'
+    click_button 'Attack'
     expect(page).to have_content 'Bianca attacked Makers'
+  end
+
+  scenario 'reduce Player 2 HP by 10' do
+    sing_in_and_play
+    click_button 'Attack'
+    click_link 'OK'
+    expect(page).not_to have_content 'Makers: 60HP'
+    expect(page).to have_content 'Makers: 50HP'
   end
 end
